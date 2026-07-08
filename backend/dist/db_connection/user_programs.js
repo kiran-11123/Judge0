@@ -4,7 +4,8 @@ const Code_Schema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
-        required: true
+        required: true,
+        unique: true
     },
     Codes_Saved: [{
             title: String,

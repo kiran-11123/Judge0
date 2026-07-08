@@ -3,6 +3,14 @@ import jwt from 'jsonwebtoken'
 dotenv.config();
 import type { Request , Response , NextFunction} from 'express';
 
+
+import type { JwtPayload } from "jsonwebtoken";
+
+interface UserPayload extends JwtPayload {
+    email: string;
+    user_id: string;
+}
+
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 const Authentication_token = (req : Request,res: Response , next : NextFunction)=>{
@@ -18,7 +26,7 @@ const Authentication_token = (req : Request,res: Response , next : NextFunction)
 
     try{
 
-        const decoded = jwt.verify(token , JWT_SECRET)
+        const decoded = jwt.verify(token , JWT_SECRET) as UserPayload; 
         
          if(!decoded){
              return res.status(401).json({
