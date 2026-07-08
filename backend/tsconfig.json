@@ -19,6 +19,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+     "allowSyntheticDefaultImports": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -39,6 +40,7 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
+    "esModuleInterop": true,
     "skipLibCheck": true,
   }
 }
