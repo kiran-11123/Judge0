@@ -6,4 +6,13 @@ const bullmqConnection = new Redis({
   maxRetriesPerRequest: null,
 });
 
+
+bullmqConnection.on("connect", () => {
+  console.log("IORedis connected");
+});
+
+bullmqConnection.on("error", (err) => {
+  console.log("Redis error:", err);
+});
+
 export default bullmqConnection;

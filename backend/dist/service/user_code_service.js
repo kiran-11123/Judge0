@@ -1,5 +1,6 @@
 import code_model from "../db_connection/user_programs.js";
 import mongoose from "mongoose";
+import { codeQueue } from "../worker/bullMQ_consumer.js";
 export const Code_Submission_Service = async (user_id, title, language, code) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(user_id)) {
@@ -17,6 +18,18 @@ export const Code_Submission_Service = async (user_id, title, language, code) =>
         }, {
             new: true,
             upsert: true
+        });
+        await codeQueue.add("execute-code", {
+            user_id: new_user_id,
+            language,
+            title,
+            code,
+        }, {
+            attempts: 3,
+            backoff: {
+                type: "exponential",
+                delay: 2000,
+            },
         });
         return result;
     }

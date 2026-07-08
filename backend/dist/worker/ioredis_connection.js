@@ -4,5 +4,11 @@ const bullmqConnection = new Redis({
     port: 6379,
     maxRetriesPerRequest: null,
 });
+bullmqConnection.on("connect", () => {
+    console.log("IORedis connected");
+});
+bullmqConnection.on("error", (err) => {
+    console.log("Redis error:", err);
+});
 export default bullmqConnection;
 //# sourceMappingURL=ioredis_connection.js.map

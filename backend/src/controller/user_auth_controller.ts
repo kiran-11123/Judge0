@@ -3,6 +3,7 @@ import type { Request , Response } from "express";
 
 export const SignIn_Controller = async(req :Request , res :Response)=>{
 
+
     try{
         
         const email = req.body.email;
@@ -24,7 +25,8 @@ export const SignIn_Controller = async(req :Request , res :Response)=>{
         });
 
         return res.status(200).json({
-            message : 'User Signed In Successfully'
+            message : 'User Signed In Successfully',
+            token  : token
         })
 
 
@@ -53,6 +55,8 @@ export const SignIn_Controller = async(req :Request , res :Response)=>{
 }
 
 export const SignUp_Controller = async(req :Request , res :Response)=>{
+
+       
 
     try{
 

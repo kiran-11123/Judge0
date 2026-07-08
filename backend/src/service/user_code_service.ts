@@ -1,6 +1,6 @@
 import code_model from "../db_connection/user_programs.js";
 import mongoose from "mongoose";
-
+import { codeQueue } from "../worker/bullMQ_consumer.js";
 
 
 
@@ -32,6 +32,26 @@ export const Code_Submission_Service = async( user_id :string , title: string,  
                 upsert: true
             }
         )
+
+
+      await codeQueue.add(
+  "execute-code",
+  {
+    user_id :new_user_id,
+    language,
+    title,
+    code,
+  },
+  {
+    attempts: 3,
+    backoff: {
+      type: "exponential",
+      delay: 2000,
+    },
+  }
+);
+
+
 
         return result
 

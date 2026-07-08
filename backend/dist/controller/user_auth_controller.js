@@ -16,7 +16,8 @@ export const SignIn_Controller = async (req, res) => {
             maxAge: 3600000
         });
         return res.status(200).json({
-            message: 'User Signed In Successfully'
+            message: 'User Signed In Successfully',
+            token: token
         });
     }
     catch (er) {
