@@ -1,10 +1,13 @@
 #!/bin/bash
 
-javac Main.java
+cd /code || exit 1
 
-if [ $? -eq 0 ]; then
-    java Main
-else
-    echo "Compilation failed."
-    exit 1
+javac Main.java
+compile_status=$?
+
+if [ $compile_status -ne 0 ]; then
+    exit $compile_status
 fi
+
+java Main
+exit $?

@@ -1,2 +1,8 @@
-export declare const executeCpp: (code: any) => Promise<void>;
+interface ExecutionResult {
+    stdout: string;
+    stderr: string;
+    exitCode: number;
+}
+export declare function executeCpp(code: string): Promise<ExecutionResult>;
+export {};
 //# sourceMappingURL=c_worker.d.ts.map
