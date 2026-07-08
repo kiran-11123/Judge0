@@ -4,8 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": " tsc -b && tsx watch src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "watch": "tsc -b --watch",
+    "dev": "tsx watch src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.1.1",
     "@types/nodemon": "^1.19.6",
     "ts-node-dev": "^2.0.0",
@@ -21,6 +23,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
