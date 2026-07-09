@@ -1,24 +1,29 @@
 import problem_model from "../db_connection/problem_schema.js";
 import mongoose from "mongoose";
-export const CreateProblem = async (problem_title, problem_description, problem_difficulty, constraints, time_limit, memory_limit) => {
+export const CreateProblem = async (problem_title, problem_description, template_code, function_signature, problem_difficulty, constraints, time_limit, memory_limit, test_cases) => {
     try {
-        const check_problem = await problem_model.findOne({ problem_title });
+        const check_problem = await problem_model.findOne({
+            problem_title
+        });
         if (check_problem) {
             throw new Error("Problem with this title already exists");
         }
         const new_problem = new problem_model({
             problem_title,
             problem_description,
+            template_code,
+            function_signature,
             problem_difficulty,
             constraints,
             time_limit: time_limit ?? 1000,
-            memory_limit: memory_limit ?? 256
+            memory_limit: memory_limit ?? 256,
+            testcases: test_cases ?? []
         });
         await new_problem.save();
-        return true;
+        return new_problem;
     }
-    catch (er) {
-        throw er;
+    catch (err) {
+        throw err;
     }
 };
 export const GetAllProblems = async () => {

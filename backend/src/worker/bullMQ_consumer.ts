@@ -4,8 +4,9 @@ import bullmqConnection from "./ioredis_connection.js";
 import { executePython } from "./python_worker/python_worker.js";
 import { executeJavaScript } from "./javascript_worker/javascript_worker.js";
 import { executeCpp } from "./c++_worker/c_worker.js";
-import { executeJava } from "./java_worker/java_woker.js";
+
 import code_model from "../db_connection/user_programs.js";
+import {Judge_Java} from "./java_worker/Judge_Java.js";
 
 export const codeQueue = new Queue("code_execution_queue", {
   connection: bullmqConnection,
@@ -73,11 +74,10 @@ const codeWorker = new Worker(
         }
 
         case "java": {
-          const result = await executeJava(code, user_id, submission_id, problem_id);
+          const result = await Judge_Java( problem_id, user_id, submission_id ,code);
 
           console.log("Java execution result:", result);
           console.log('result stderr' , result.stderr)
-          console.log('result stdout' , result.stdout)
           await updateSubmissionStatus(
             user_id,
             problem_id,

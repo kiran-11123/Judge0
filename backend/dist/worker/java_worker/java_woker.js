@@ -25,7 +25,7 @@ async function cleanup(tempDir) {
         console.error("Cleanup failed:", err);
     }
 }
-export async function executeJava(code, user_id, submission_id, project_id) {
+export async function executeJava(code) {
     let tempDir = "";
     try {
         const jobId = crypto.randomUUID();
@@ -43,12 +43,21 @@ export async function executeJava(code, user_id, submission_id, project_id) {
             const docker = spawn("docker", [
                 "run",
                 "--rm",
+                "--memory",
+                "256m",
+                "--cpus",
+                "1",
+                "--network",
+                "none",
                 "--mount",
                 `type=bind,source=${tempDir},target=/code`,
                 "judge-java"
             ]);
             let stdout = "";
             let stderr = "";
+            const timeout = setTimeout(() => {
+                docker.kill();
+            }, 5000);
             docker.stdout.on("data", (data) => {
                 stdout += data.toString();
             });
@@ -61,6 +70,7 @@ export async function executeJava(code, user_id, submission_id, project_id) {
                 reject(err);
             });
             docker.on("close", async (exitCode) => {
+                clearTimeout(timeout);
                 console.log("Docker exit code:", exitCode);
                 console.log("Docker stdout:", stdout);
                 console.log("Docker stderr:", stderr);

@@ -1,56 +1,124 @@
 import { CreateProblem , AddTestCaseToProblem , GetAllProblems , GetProblemById } from "../service/problem_service.js";
 import type {Request , Response} from "express";
 
-export const createProblemController = async(req :Request , res :Response) =>{
-    
-    try{
-        let {problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit} = req.body;
 
-        if(!problem_title || !problem_description || !problem_difficulty || !constraints){
+export const createProblemController = async (
+    req: Request,
+    res: Response
+) => {
+
+    try {
+
+        let {
+            problem_title,
+            problem_description,
+            template_code,
+            function_signature,
+            problem_difficulty,
+            constraints,
+            time_limit,
+            memory_limit,
+            testcases
+        } = req.body;
+
+        if (
+            !problem_title ||
+            !problem_description ||
+            !template_code ||
+            !function_signature ||
+            !problem_difficulty ||
+            !constraints ||
+            !testcases
+        ) {
             return res.status(400).json({
-                message : "All Fields Required"
-            })
+                message: "All fields are required"
+            });
         }
 
         problem_title = problem_title.trim();
         problem_description = problem_description.trim();
+        template_code = template_code.trim();
         constraints = constraints.trim();
         problem_difficulty = problem_difficulty.trim().toLowerCase();
 
-        if(!['easy' , 'medium' , 'hard'].includes(problem_difficulty)){
+        if (!["easy", "medium", "hard"].includes(problem_difficulty)) {
             return res.status(400).json({
-                message : "Invalid problem difficulty"
-            })
+                message: "Invalid problem difficulty"
+            });
         }
 
-        const new_problem = await CreateProblem(problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit);
+        if (
+            !function_signature.method_name ||
+            !function_signature.return_type
+        ) {
+            return res.status(400).json({
+                message: "Invalid function signature"
+            });
+        }
+
+        if (
+            !Array.isArray(function_signature.parameters)
+        ) {
+            return res.status(400).json({
+                message: "Parameters must be an array"
+            });
+        }
+
+        for (const parameter of function_signature.parameters) {
+
+            if (!parameter.name || !parameter.type) {
+
+                return res.status(400).json({
+                    message: "Every parameter must contain name and type"
+                });
+
+            }
+
+        }
+
+        if (!Array.isArray(testcases) || testcases.length === 0) {
+            return res.status(400).json({
+                message: "At least one testcase is required"
+            });
+        }
+
+        const newProblem = await CreateProblem(
+            problem_title,
+            problem_description,
+            template_code,
+            function_signature,
+            problem_difficulty,
+            constraints,
+            time_limit,
+            memory_limit,
+            testcases
+        );
 
         return res.status(201).json({
-            message : "Problem created successfully",
-            problem : new_problem
+            message: "Problem created successfully",
+            problem: newProblem
         });
-    }
 
-    catch(er :any){
+    } catch (err: any) {
 
-        if(er.message === "duplicate key error"){
+        if (
+            err.message === "duplicate key error" ||
+            err.message === "Problem with this title already exists"
+        ) {
             return res.status(400).json({
-                message : "Problem title already exists"
+                message: "Problem title already exists"
             });
         }
 
-        else if(er.message === "Problem with this title already exists"){
-            return res.status(400).json({
-                message : "Problem with this title already exists"
-            });
-        }
-        
+        console.error(err);
+
         return res.status(500).json({
-            message :'Internal server error'
-        })
+            message: "Internal server error"
+        });
 
     }
-}
+
+};
 
 
 export const GetAllProblemsController = async(req :Request , res :Response) =>{

@@ -23,6 +23,7 @@ export const Code_Submission_Controller = async (req, res) => {
         });
     }
     catch (er) {
+        console.log('error while submitting the code', er);
         if (er.message === 'Invalid User ID') {
             return res.status(403).json({
                 message: 'Invalid User ID'

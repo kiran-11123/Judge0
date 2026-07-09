@@ -40,9 +40,6 @@ async function cleanup(tempDir: string) {
 
 export async function executeJava(
   code: string,
-  user_id: string,
-  submission_id: string,
-  project_id :string
 ): Promise<ExecutionResult> {
 
   let tempDir = "";
@@ -89,17 +86,34 @@ export async function executeJava(
 
     return await new Promise((resolve, reject) => {
 
-const docker = spawn("docker", [
+const docker = spawn("docker",[
     "run",
     "--rm",
+
+    "--memory",
+    "256m",
+
+    "--cpus",
+    "1",
+
+    "--network",
+    "none",
+
     "--mount",
     `type=bind,source=${tempDir},target=/code`,
+
     "judge-java"
 ]);
 
       let stdout = "";
       let stderr = "";
 
+
+      const timeout=setTimeout(()=>{
+
+    docker.kill();
+
+},5000);
 
       docker.stdout.on(
         "data",
@@ -138,7 +152,7 @@ const docker = spawn("docker", [
         "close",
         async(exitCode) => {
 
-
+clearTimeout(timeout);
         
     console.log("Docker exit code:", exitCode);
     console.log("Docker stdout:", stdout);
