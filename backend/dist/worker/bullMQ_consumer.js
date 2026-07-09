@@ -9,7 +9,6 @@ export const codeQueue = new Queue("code_execution_queue", {
 });
 const codeWorker = new Worker("code_execution_queue", async (job) => {
     const { user_id, title, language, code } = job.data;
-    console.log(job.data);
     // Validation
     if (!user_id || !title || !language || !code) {
         throw new Error("Missing required fields");
@@ -20,31 +19,18 @@ const codeWorker = new Worker("code_execution_queue", async (job) => {
     switch (language) {
         case "python": {
             const result = await executePython(code);
-            console.log(result);
+            return result;
         }
         case "java": {
             const result = await executeJava(code);
-            console.log(result.stdout);
-            if (result.exitCode === 0) {
-                return {
-                    output: result.stdout,
-                    error: null,
-                    status: "completed"
-                };
-            }
-            return {
-                output: "",
-                error: result.stderr,
-                status: "failed"
-            };
+            return result;
         }
         case "javascript": {
             const result = await executeJavaScript(code);
-            console.log(result);
+            return result;
         }
         case "c++": {
             const result = await executeCpp(code);
-            console.log(result.stdout);
             return result;
         }
         default:
@@ -52,5 +38,15 @@ const codeWorker = new Worker("code_execution_queue", async (job) => {
     }
 }, {
     connection: bullmqConnection,
+    concurrency: 5, // Adjust concurrency as needed
+});
+codeWorker.on("completed", (job) => {
+    console.log(`Job ${job.id} completed with result:`, job.returnvalue);
+});
+codeWorker.on("failed", (job, err) => {
+    console.error(`Job ${job.id} failed with error:`, err);
+});
+codeWorker.on("error", (err) => {
+    console.error(err);
 });
 //# sourceMappingURL=bullMQ_consumer.js.map
