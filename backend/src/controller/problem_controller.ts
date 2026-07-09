@@ -2,9 +2,26 @@ import { CreateProblem , AddTestCaseToProblem , GetAllProblems , GetProblemById 
 import type {Request , Response} from "express";
 
 export const createProblemController = async(req :Request , res :Response) =>{
-
+    
     try{
-        const {problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit} = req.body;
+        let {problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit} = req.body;
+
+        if(!problem_title || !problem_description || !problem_difficulty || !constraints){
+            return res.status(400).json({
+                message : "All Fields Required"
+            })
+        }
+
+        problem_title = problem_title.trim();
+        problem_description = problem_description.trim();
+        constraints = constraints.trim();
+        problem_difficulty = problem_difficulty.trim().toLowerCase();
+
+        if(!['easy' , 'medium' , 'hard'].includes(problem_difficulty)){
+            return res.status(400).json({
+                message : "Invalid problem difficulty"
+            })
+        }
 
         const new_problem = await CreateProblem(problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit);
 
@@ -15,6 +32,7 @@ export const createProblemController = async(req :Request , res :Response) =>{
     }
 
     catch(er :any){
+
         if(er.message === "duplicate key error"){
             return res.status(400).json({
                 message : "Problem title already exists"

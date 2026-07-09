@@ -14,9 +14,9 @@ const TestCaseSchema = new mongoose.Schema({
     },
 }, { _id: false });
 const Problem_Schema = new mongoose.Schema({
-    problem_title: { type: String, required: true, unique: true },
+    problem_title: { type: String, required: true, unique: true, trim: true },
     problem_description: { type: String, required: true },
-    problem_difficulty: { type: String, enum: ['easy', 'medium', 'hard'] },
+    problem_difficulty: { type: String, enum: ['easy', 'medium', 'hard'], required: true },
     constraints: { type: String, required: true },
     time_limit: {
         type: Number,

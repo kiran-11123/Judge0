@@ -23,9 +23,9 @@ const TestCaseSchema = new mongoose.Schema(
 
 const Problem_Schema = new mongoose.Schema({
       
-    problem_title : {type:String , required:true , unique :true},
-    problem_description : {type : String  , required:true},
-    problem_difficulty : {type : String  , enum : ['easy' , 'medium' , 'hard']},
+    problem_title : {type:String , required:true , unique :true , trim:true},
+    problem_description : {type : String  , required:true },
+    problem_difficulty : {type : String  , enum : ['easy' , 'medium' , 'hard'] ,required : true},
     constraints : {type : String , required:true} ,
     time_limit : {
         type :Number,

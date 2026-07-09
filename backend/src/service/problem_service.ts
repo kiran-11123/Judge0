@@ -1,12 +1,12 @@
 import problem_model from "../db_connection/problem_schema.js";
-
+import mongoose from "mongoose";
 
 
 export const CreateProblem = async(problem_title :string , problem_description :string , problem_difficulty :string  , constraints :string , time_limit? :Number , memory_limit? :Number   ) =>{
-       
+    
     try{
 
-        const check_problem = await problem_model.findOne({problem_title : problem_title});
+        const check_problem = await problem_model.findOne({ problem_title });
 
         if(check_problem){
             throw new Error("Problem with this title already exists");
@@ -20,9 +20,11 @@ export const CreateProblem = async(problem_title :string , problem_description :
             time_limit: time_limit ?? 1000,
             memory_limit: memory_limit ?? 256
         });
+
         await new_problem.save();
 
-        return new_problem;
+
+        return true;
 
     }
     catch(er){
@@ -71,8 +73,10 @@ export const GetProblemById = async(problem_id :string) =>{
 export const AddTestCaseToProblem = async(problem_id :string , input :string , output :string , isHidden? :boolean) =>{
 
     try{
+
+        const problem_id_new = new mongoose.Types.ObjectId(problem_id);
         
-        const problem = await problem_model.findById(problem_id);
+        const problem = await problem_model.findById(problem_id_new);
 
         if(!problem){
             throw new Error("Problem not found");

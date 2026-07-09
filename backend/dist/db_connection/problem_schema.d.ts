@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 declare const problem_model: mongoose.Model<{
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -18,12 +19,12 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps, {}, {}, {
     id: string;
 }, mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -40,7 +41,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps, {
     id: string;
 }, {
@@ -48,6 +48,7 @@ declare const problem_model: mongoose.Model<{
 }> & Omit<{
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -64,7 +65,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps & {
     _id: mongoose.Types.ObjectId;
 } & {
@@ -76,6 +76,7 @@ declare const problem_model: mongoose.Model<{
 }, {
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -92,10 +93,10 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps, mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -112,7 +113,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps, {
     id: string;
 }, Omit<mongoose.DefaultSchemaOptions, "timestamps"> & {
@@ -120,6 +120,7 @@ declare const problem_model: mongoose.Model<{
 }> & Omit<{
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -136,7 +137,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
 } & mongoose.DefaultTimestampProps & {
     _id: mongoose.Types.ObjectId;
 } & {
@@ -146,6 +146,7 @@ declare const problem_model: mongoose.Model<{
 }>, unknown, {
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -162,7 +163,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
@@ -172,6 +172,7 @@ declare const problem_model: mongoose.Model<{
 }>, {
     problem_title: string;
     problem_description: string;
+    problem_difficulty: "easy" | "medium" | "hard";
     constraints: string;
     time_limit: number;
     memory_limit: number;
@@ -188,7 +189,6 @@ declare const problem_model: mongoose.Model<{
         output: string;
         isHidden: boolean;
     }>;
-    problem_difficulty?: "easy" | "medium" | "hard" | null;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {

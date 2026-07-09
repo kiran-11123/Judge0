@@ -1,7 +1,21 @@
 import { CreateProblem, AddTestCaseToProblem, GetAllProblems, GetProblemById } from "../service/problem_service.js";
 export const createProblemController = async (req, res) => {
     try {
-        const { problem_title, problem_description, problem_difficulty, constraints, time_limit, memory_limit } = req.body;
+        let { problem_title, problem_description, problem_difficulty, constraints, time_limit, memory_limit } = req.body;
+        if (!problem_title || !problem_description || !problem_difficulty || !constraints) {
+            return res.status(400).json({
+                message: "All Fields Required"
+            });
+        }
+        problem_title = problem_title.trim();
+        problem_description = problem_description.trim();
+        constraints = constraints.trim();
+        problem_difficulty = problem_difficulty.trim().toLowerCase();
+        if (!['easy', 'medium', 'hard'].includes(problem_difficulty)) {
+            return res.status(400).json({
+                message: "Invalid problem difficulty"
+            });
+        }
         const new_problem = await CreateProblem(problem_title, problem_description, problem_difficulty, constraints, time_limit, memory_limit);
         return res.status(201).json({
             message: "Problem created successfully",

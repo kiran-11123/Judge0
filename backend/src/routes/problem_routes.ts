@@ -8,7 +8,7 @@ const Problem_Router = express.Router();
 Problem_Router.post("/create" , Authentication_token , createProblemController);
 Problem_Router.get("/all_problems",Authentication_token , GetAllProblemsController);
 Problem_Router.get("/problem/:problem_id" ,Authentication_token , GetProblemByIdController )
-Problem_Router.post("/test_case/:problem_id" , Authentication_token , AddTestCaseToProblemController);
+Problem_Router.post("/:problem_id/test_case" , Authentication_token , AddTestCaseToProblemController);
 
 
 
