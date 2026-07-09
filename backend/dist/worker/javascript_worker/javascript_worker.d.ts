@@ -1,9 +1,2 @@
-interface UserPayload {
-    title: string;
-    user_id: string;
-    language: string;
-    code: string;
-}
-export declare const executeJavaScript: (code: UserPayload) => Promise<void>;
-export {};
+export declare const executeJavaScript: (code: string, user_id: string, submission_id: string) => Promise<void>;
 //# sourceMappingURL=javascript_worker.d.ts.map

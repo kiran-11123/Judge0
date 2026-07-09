@@ -1,9 +1,2 @@
-interface UserPayload {
-    title: string;
-    user_id: string;
-    language: string;
-    code: string;
-}
-export declare const executePython: (code: UserPayload) => Promise<void>;
-export {};
+export declare const executePython: (code: string, user_id: string, submission_id: string) => Promise<void>;
 //# sourceMappingURL=python_worker.d.ts.map

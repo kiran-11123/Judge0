@@ -1,17 +1,22 @@
 import mongoose from "mongoose";
-export declare const Code_Submission_Service: (user_id: string, title: string, language: string, code: string) => Promise<mongoose.Document<unknown, {}, {
+export declare const Code_Submission_Service: (user_id: string, problem_id: string, title: string, language: string, code: string) => Promise<void>;
+export declare const Get_User_Codes_Service: (user_id: string) => Promise<(mongoose.Document<unknown, {}, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -21,17 +26,21 @@ export declare const Code_Submission_Service: (user_id: string, title: string, l
     id: string;
 }, mongoose.DefaultSchemaOptions> & Omit<{
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -43,21 +52,5 @@ export declare const Code_Submission_Service: (user_id: string, title: string, l
     __v: number;
 }, "id"> & mongoose.HydratedDocumentOverrides<{
     id: string;
-}>>;
-export declare const Get_User_Codes_Service: (user_id: string) => Promise<mongoose.Types.DocumentArray<{
-    created_at: NativeDate;
-    title?: string | null;
-    language?: string | null;
-    code?: string | null;
-}, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
-    created_at: NativeDate;
-    title?: string | null;
-    language?: string | null;
-    code?: string | null;
-}, {}, {}> & {
-    created_at: NativeDate;
-    title?: string | null;
-    language?: string | null;
-    code?: string | null;
-}> | never[]>;
+}>) | null>;
 //# sourceMappingURL=user_code_service.d.ts.map

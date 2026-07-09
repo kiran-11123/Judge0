@@ -6,6 +6,7 @@ export const Code_Submission_Controller = async (req, res) => {
                 message: "Unauthorized"
             });
         }
+        const problem_id = req.body.problem_id;
         const user_id = req.user.user_id;
         const title = req.body.title;
         const code = req.body.code;
@@ -15,7 +16,7 @@ export const Code_Submission_Controller = async (req, res) => {
                 message: 'Missing required fields'
             });
         }
-        const result = await Code_Submission_Service(user_id, title, language, code);
+        const result = await Code_Submission_Service(user_id, problem_id, title, language, code);
         return res.status(200).json({
             message: 'Code Saved Successfully',
             data: result

@@ -9,7 +9,7 @@ interface ExecutionResult {
   exitCode: number;
 }
 
-export async function executeCpp(code: string): Promise<ExecutionResult> {
+export async function executeCpp(code: string , user_id: string, submission_id: string): Promise<ExecutionResult> {
 
 
     try{

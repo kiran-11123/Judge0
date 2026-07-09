@@ -45,7 +45,7 @@ export const GetProblemById = async (problem_id) => {
 export const AddTestCaseToProblem = async (problem_id, input, output, isHidden) => {
     try {
         const problem_id_new = new mongoose.Types.ObjectId(problem_id);
-        const problem = await problem_model.findById(problem_id);
+        const problem = await problem_model.findById(problem_id_new);
         if (!problem) {
             throw new Error("Problem not found");
         }

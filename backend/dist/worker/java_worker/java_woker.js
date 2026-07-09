@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
+import mongoose from 'mongoose';
+import code_model from "../../db_connection/user_programs.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // temp folder will be created in the same folder as this file
@@ -23,7 +25,7 @@ async function cleanup(tempDir) {
         console.error("Cleanup failed:", err);
     }
 }
-export async function executeJava(code) {
+export async function executeJava(code, user_id, submission_id, project_id) {
     let tempDir = "";
     try {
         const jobId = crypto.randomUUID();

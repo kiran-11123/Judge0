@@ -1,17 +1,21 @@
 import mongoose from "mongoose";
 declare const code_model: mongoose.Model<{
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -21,17 +25,21 @@ declare const code_model: mongoose.Model<{
     id: string;
 }, mongoose.Document<unknown, {}, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -41,17 +49,21 @@ declare const code_model: mongoose.Model<{
     id: string;
 }, mongoose.DefaultSchemaOptions> & Omit<{
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -65,17 +77,21 @@ declare const code_model: mongoose.Model<{
     id: string;
 }>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -83,17 +99,21 @@ declare const code_model: mongoose.Model<{
     }>;
 }, mongoose.Document<unknown, {}, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -103,17 +123,21 @@ declare const code_model: mongoose.Model<{
     id: string;
 }, mongoose.DefaultSchemaOptions> & Omit<{
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -127,17 +151,21 @@ declare const code_model: mongoose.Model<{
     id: string;
 }>, unknown, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
@@ -149,17 +177,21 @@ declare const code_model: mongoose.Model<{
     __v: number;
 }>, {
     user_id: mongoose.Types.ObjectId;
-    Codes_Saved: mongoose.Types.DocumentArray<{
+    problem_id: mongoose.Types.ObjectId;
+    codes_saved: mongoose.Types.DocumentArray<{
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, mongoose.Types.Subdocument<mongoose.mongo.ObjectId, unknown, {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;
         code?: string | null;
     }, {}, {}> & {
+        status: string;
         created_at: NativeDate;
         title?: string | null;
         language?: string | null;

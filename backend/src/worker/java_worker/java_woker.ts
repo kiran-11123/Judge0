@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
+import mongoose from 'mongoose'
+import code_model from "../../db_connection/user_programs.js";
 
 interface ExecutionResult {
   stdout: string;
@@ -37,10 +39,15 @@ async function cleanup(tempDir: string) {
 
 
 export async function executeJava(
-  code: string
+  code: string,
+  user_id: string,
+  submission_id: string,
+  project_id :string
 ): Promise<ExecutionResult> {
 
   let tempDir = "";
+
+
 
   try {
 

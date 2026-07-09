@@ -18,6 +18,7 @@ export const Code_Submission_Controller = async(req :Request,res : Response)=>{
         }
         
         
+        const problem_id = req.body.problem_id as string;
         const user_id = req.user.user_id as string;
 
 
@@ -33,7 +34,7 @@ export const Code_Submission_Controller = async(req :Request,res : Response)=>{
         }
         
 
-        const result = await Code_Submission_Service(user_id , title , language , code);
+        const result = await Code_Submission_Service(user_id , problem_id ,  title , language , code);
 
         return res.status(200).json({
             message : 'Code Saved Successfully',

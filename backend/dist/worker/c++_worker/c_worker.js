@@ -2,7 +2,7 @@ import { spawn } from "child_process";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
-export async function executeCpp(code) {
+export async function executeCpp(code, user_id, submission_id) {
     try {
         const jobId = crypto.randomUUID();
         const tempDir = path.join(process.cwd(), "temp", jobId);
