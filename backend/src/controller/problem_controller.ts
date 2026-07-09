@@ -1,0 +1,115 @@
+import { CreateProblem , AddTestCaseToProblem , GetAllProblems , GetProblemById } from "../service/problem_service.js";
+import type {Request , Response} from "express";
+
+export const createProblemController = async(req :Request , res :Response) =>{
+
+    try{
+        const {problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit} = req.body;
+
+        const new_problem = await CreateProblem(problem_title , problem_description , problem_difficulty , constraints , time_limit , memory_limit);
+
+        return res.status(201).json({
+            message : "Problem created successfully",
+            problem : new_problem
+        });
+    }
+
+    catch(er :any){
+        if(er.message === "duplicate key error"){
+            return res.status(400).json({
+                message : "Problem title already exists"
+            });
+        }
+
+        else if(er.message === "Problem with this title already exists"){
+            return res.status(400).json({
+                message : "Problem with this title already exists"
+            });
+        }
+        
+        return res.status(500).json({
+            message :'Internal server error'
+        })
+
+    }
+}
+
+
+export const GetAllProblemsController = async(req :Request , res :Response) =>{
+
+    try{
+
+        const problems = await GetAllProblems();
+
+        return res.status(200).json({
+            message : "Problems fetched successfully",
+            problems : problems
+        });
+    }
+
+    catch(er :any){
+        return res.status(500).json({
+            message :'Internal server error'
+        })
+    }
+}
+
+
+export const GetProblemByIdController = async(req :Request , res :Response) =>{
+
+    try{
+
+        const { problem_id } : any = req.params;
+
+       
+
+        const problem = await GetProblemById(problem_id);
+
+        return res.status(200).json({
+            message : "Problem fetched successfully",
+            problem : problem
+        });
+    }
+
+    catch(er :any){
+        if(er.message === "Problem not found"){
+            return res.status(404).json({
+                message : "Problem not found"
+            });
+        }
+
+        return res.status(500).json({
+            message :'Internal server error'
+        })
+    }
+}
+
+
+export const AddTestCaseToProblemController = async(req :Request , res :Response) =>{
+
+    try{
+
+        const { problem_id } : any = req.params;
+
+        const { input , output , isHidden } = req.body;
+
+        const updated_problem = await AddTestCaseToProblem(problem_id , input , output , isHidden);
+
+        return res.status(200).json({
+            message : "Test case added successfully",
+            problem : updated_problem
+        });
+    }
+    catch(er:any){
+         
+        if(er.message === "Problem not found"){
+            return res.status(404).json({
+                message : "Problem not found"
+            });
+        }
+
+        return res.status(500).json({
+            message :'Internal server error'
+        })
+    }
+}

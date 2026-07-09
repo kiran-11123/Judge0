@@ -18,7 +18,7 @@ const Problem_Schema = new mongoose.Schema({
     problem_description: { type: String, required: true },
     problem_difficulty: { type: String, enum: ['easy', 'medium', 'hard'] },
     constraints: { type: String, required: true },
-    timelimit: {
+    time_limit: {
         type: Number,
         default: 1000
     },

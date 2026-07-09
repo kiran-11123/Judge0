@@ -5,6 +5,7 @@ import { ConnectRedis } from './redis/redis.js';
 import ConnectDB from './db_connection/db.js';
 import Auth_Router from './routes/user_auth_routes.js';
 import Code_Router from './routes/user_code_routes.js';
+import Problem_Router from './routes/problem_routes.js';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 const app = express();
@@ -25,6 +26,7 @@ const Limiter = rateLimit({
 app.use(Limiter);
 app.use("/api/auth", Auth_Router);
 app.use("/api/code", Code_Router);
+app.use("/api/problem", Problem_Router);
 app.listen(PORT, () => {
     console.log(`Server is Running on PORT  : ${PORT}`);
 });
