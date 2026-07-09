@@ -6,7 +6,7 @@ import { executeJavaScript } from "./javascript_worker/javascript_worker.js";
 import { executeCpp } from "./c++_worker/c_worker.js";
 
 import code_model from "../db_connection/user_programs.js";
-import {Judge_Java} from "./java_worker/Judge_Java.js";
+import { Judge_Java } from "./java_worker/Judge_Java.js";
 
 export const codeQueue = new Queue("code_execution_queue", {
   connection: bullmqConnection,
@@ -16,7 +16,7 @@ const updateSubmissionStatus = async (
   userId: string | mongoose.Types.ObjectId | undefined,
   problemId: string | mongoose.Types.ObjectId | undefined,
   submissionId: string | mongoose.Types.ObjectId | undefined,
-  status: "pending" | "running" | "completed" | "failed"
+  status: any
 ) => {
   if (!userId || !problemId || !submissionId) {
     return;
@@ -74,15 +74,34 @@ const codeWorker = new Worker(
         }
 
         case "java": {
-          const result = await Judge_Java( problem_id, user_id, submission_id ,code);
+          const result = await Judge_Java(problem_id, user_id, submission_id, code);
 
           console.log("Java execution result:", result);
-          console.log('result stderr' , result.stderr)
+          console.log('result stderr', result.stderr)
+          console.log('Total Test cases' , result.total);
+          console.log('Test Cases Passed' , result.passed)
+          let submissionStatus = "Pending";
+
+          if (result.status === "accepted") {
+            submissionStatus = "Accepted";
+          }
+          else if (result.status === "wrong_answer") {
+            submissionStatus = "Wrong Answer";
+          }
+          else if (result.status === "runtime_error") {
+            submissionStatus = "Runtime Error";
+          }
+          else if (result.status === "compilation_error") {
+            submissionStatus = "Compilation Error";
+          }
+          else if (result.status === 'time_limit_exceeded') {
+            submissionStatus = "Time Limit Exceeded"
+          }
           await updateSubmissionStatus(
             user_id,
             problem_id,
             submission_id,
-            (result as { status?: string } | undefined)?.status === "failed" ? "failed" : "completed"
+            submissionStatus
           );
           return result;
         }

@@ -19,11 +19,11 @@ export const Code_Submission_Service = async( user_id :string , problem_id : str
         const new_user_id = new mongoose.Types.ObjectId(user_id);
         const new_problem_id = new mongoose.Types.ObjectId(problem_id);
 
-          let saved_code = await code_model.findOne({
+        let saved_code = await code_model.findOne({
             user_id: new_user_id,
             problem_id: new_problem_id
         });
-       
+
 
         if(!saved_code){
               
@@ -35,7 +35,7 @@ export const Code_Submission_Service = async( user_id :string , problem_id : str
             })
         }
 
-          saved_code.codes_saved.push({
+        saved_code.codes_saved.push({
 
                 title,
                 language,

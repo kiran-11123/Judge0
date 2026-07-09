@@ -48,7 +48,25 @@ const codeWorker = new Worker("code_execution_queue", async (job) => {
                 const result = await Judge_Java(problem_id, user_id, submission_id, code);
                 console.log("Java execution result:", result);
                 console.log('result stderr', result.stderr);
-                await updateSubmissionStatus(user_id, problem_id, submission_id, result?.status === "failed" ? "failed" : "completed");
+                console.log('Total Test cases', result.total);
+                console.log('Test Cases Passed', result.passed);
+                let submissionStatus = "Pending";
+                if (result.status === "accepted") {
+                    submissionStatus = "Accepted";
+                }
+                else if (result.status === "wrong_answer") {
+                    submissionStatus = "Wrong Answer";
+                }
+                else if (result.status === "runtime_error") {
+                    submissionStatus = "Runtime Error";
+                }
+                else if (result.status === "compilation_error") {
+                    submissionStatus = "Compilation Error";
+                }
+                else if (result.status === 'time_limit_exceeded') {
+                    submissionStatus = "Time Limit Exceeded";
+                }
+                await updateSubmissionStatus(user_id, problem_id, submission_id, submissionStatus);
                 return result;
             }
             case "javascript": {

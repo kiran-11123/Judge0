@@ -42,6 +42,8 @@ export async function Judge_Java(
 
 
     const testcases = problem.testcases;
+    const time_limit = problem.time_limit;
+    const space_limit = problem.memory_limit;
 
 
 
@@ -53,7 +55,10 @@ export async function Judge_Java(
         throw new Error("No testcases found");
     }
 
+    
 
+    let test_cases_passed =0;
+    let total_testcases = testcases.length;
 
     for(const testcase of testcases){
 
@@ -65,7 +70,9 @@ export async function Judge_Java(
 
         const result =
         await executeJava(
-            generatedCode
+            generatedCode,
+            time_limit,
+            space_limit
         );
 
 
@@ -75,8 +82,10 @@ export async function Judge_Java(
         if(result.exitCode !== 0){
 
             return {
-                status:"runtime_error",
-                stderr:result.stderr
+                status: result.status,
+                stderr:result.stderr,
+                    passed : test_cases_passed,
+                    total : total_testcases
             };
 
         }
@@ -86,10 +95,15 @@ export async function Judge_Java(
     return {
         status: "wrong_answer",
         expected: testcase.output,
-        actual: result.stdout
+        actual: result.stdout,
+        passed : test_cases_passed,
+        total : total_testcases
+
     };
 }
-       
+
+
+       test_cases_passed+=1;
 
         
 
@@ -99,7 +113,9 @@ export async function Judge_Java(
 
 
     return {
-        status:"accepted"
+        status:"accepted",
+        passed : test_cases_passed,
+        total : total_testcases
     };
 
 }

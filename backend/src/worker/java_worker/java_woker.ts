@@ -3,13 +3,13 @@ import fs from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
-import mongoose from 'mongoose'
-import code_model from "../../db_connection/user_programs.js";
+
 
 interface ExecutionResult {
   stdout: string;
   stderr: string;
   exitCode: number;
+  status: "accepted" | "time_limit_exceeded" | "runtime_error" | "memory_limit_exceeded";
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,6 +40,8 @@ async function cleanup(tempDir: string) {
 
 export async function executeJava(
   code: string,
+  time_limit : number,
+  space_limit : number
 ): Promise<ExecutionResult> {
 
   let tempDir = "";
@@ -85,95 +87,105 @@ export async function executeJava(
 
 
     return await new Promise((resolve, reject) => {
-
-const docker = spawn("docker",[
+    const docker = spawn("docker", [
     "run",
     "--rm",
-
     "--memory",
-    "256m",
-
+    `${space_limit}m`,
+    "--memory-swap",
+    `${space_limit}m`,
     "--cpus",
     "1",
-
     "--network",
     "none",
-
     "--mount",
     `type=bind,source=${tempDir},target=/code`,
-
-    "judge-java"
+    "judge-java",
 ]);
 
       let stdout = "";
       let stderr = "";
+      let timedOut = false;
 
+      const timeout = setTimeout(() => {
+        timedOut = true;
+        console.log("Execution timeout");
+        docker.kill("SIGKILL");
+      }, time_limit*1000);
 
-      const timeout=setTimeout(()=>{
+      docker.stdout.on("data", (data) => {
+        stdout += data.toString();
+      });
 
-    docker.kill();
+      docker.stderr.on("data", (data) => {
+        stderr += data.toString();
+      });
 
-},5000);
+      docker.on("error", async (err) => {
+        console.error("Docker spawn error:", err);
+        await cleanup(tempDir);
+        reject(err);
+      });
 
-      docker.stdout.on(
-        "data",
-        (data) => {
-          stdout += data.toString();
-        }
-      );
+   docker.on("close", async(exitCode) => {
 
-
-      docker.stderr.on(
-        "data",
-        (data) => {
-          stderr += data.toString();
-        }
-      );
-
-
-      docker.on(
-        "error",
-        async(err) => {
-
-          console.error(
-            "Docker spawn error:",
-            err
-          );
-
-
-          await cleanup(tempDir);
-
-          reject(err);
-        }
-      );
-
-
-      docker.on(
-        "close",
-        async(exitCode) => {
-
-clearTimeout(timeout);
-        
-    console.log("Docker exit code:", exitCode);
-    console.log("Docker stdout:", stdout);
-    console.log("Docker stderr:", stderr);
+    clearTimeout(timeout);
 
     await cleanup(tempDir);
 
 
-
-          resolve({
+    if(timedOut){
+        resolve({
             stdout,
             stderr,
             exitCode: exitCode ?? 1,
-          });
-        }
-      );
+            status:"time_limit_exceeded"
+        });
+        return;
+    }
 
+
+    if(exitCode !== 0){
+
+        if(
+            stderr.includes("OutOfMemoryError") ||
+            stderr.includes("Killed")
+        ){
+            resolve({
+                stdout,
+                stderr,
+                exitCode : exitCode ?? 1,
+                status:"memory_limit_exceeded"
+            });
+
+            return;
+        }
+
+
+        resolve({
+            stdout,
+            stderr,
+            exitCode : exitCode ?? 1,
+            status:"runtime_error"
+        });
+
+        return;
+    }
+
+
+    resolve({
+        stdout,
+        stderr,
+        exitCode:0,
+        status:"accepted"
+    });
+
+});
     });
 
 
-  } catch(err) {
+
+  } catch (err) {
 
 
     console.error(

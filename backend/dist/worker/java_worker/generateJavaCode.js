@@ -6,8 +6,10 @@ export function generateJavaCode(solutionCode, signature, input) {
         parameterDeclaration += generateVariable(param.type, param.name, input[param.name]);
         methodArguments += param.name + ",";
     }
-    methodArguments =
-        methodArguments.slice(0, -1);
+    if (methodArguments.length > 0) {
+        methodArguments = methodArguments.slice(0, -1);
+    }
+    const printStatement = generatePrintStatement(signature.return_type);
     const mainCode = `
 
 public class Main {
@@ -27,9 +29,7 @@ public class Main {
         );
 
 
-        System.out.println(
-            java.util.Arrays.toString(result)
-        );
+        ${printStatement}
 
 
     }
@@ -38,6 +38,24 @@ public class Main {
 
 `;
     return solutionCode + mainCode;
+}
+function generatePrintStatement(returnType) {
+    switch (returnType) {
+        case "int[]":
+        case "String[]":
+        case "char[]":
+        case "boolean[]":
+        case "double[]":
+            return `
+            System.out.println(
+                java.util.Arrays.toString(result)
+            );
+            `;
+        default:
+            return `
+            System.out.println(result);
+            `;
+    }
 }
 function generateVariable(type, name, value) {
     switch (type) {

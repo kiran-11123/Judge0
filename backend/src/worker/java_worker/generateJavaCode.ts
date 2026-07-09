@@ -7,13 +7,21 @@ interface FunctionSignature {
     }[];
 }
 
+interface FunctionSignature {
+    method_name: string;
+    return_type: string;
+    parameters: {
+        name: string;
+        type: string;
+    }[];
+}
+
 
 export function generateJavaCode(
     solutionCode: string,
     signature: FunctionSignature,
     input: any
 ) {
-
 
     const params = signature.parameters;
 
@@ -32,13 +40,17 @@ export function generateJavaCode(
 
 
         methodArguments += param.name + ",";
-
     }
 
 
-    methodArguments =
-        methodArguments.slice(0, -1);
+    if(methodArguments.length > 0){
+        methodArguments = methodArguments.slice(0, -1);
+    }
 
+
+    const printStatement = generatePrintStatement(
+        signature.return_type
+    );
 
 
     const mainCode = `
@@ -60,9 +72,7 @@ public class Main {
         );
 
 
-        System.out.println(
-            java.util.Arrays.toString(result)
-        );
+        ${printStatement}
 
 
     }
@@ -71,11 +81,37 @@ public class Main {
 
 `;
 
-
     return solutionCode + mainCode;
 
 }
 
+
+
+function generatePrintStatement(returnType:string){
+
+    switch(returnType){
+
+        case "int[]":
+        case "String[]":
+        case "char[]":
+        case "boolean[]":
+        case "double[]":
+
+            return `
+            System.out.println(
+                java.util.Arrays.toString(result)
+            );
+            `;
+
+
+        default:
+
+            return `
+            System.out.println(result);
+            `;
+    }
+
+}
 
 
 function generateVariable(
