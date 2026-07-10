@@ -52,12 +52,17 @@ export async function Python_Judge(problem_id : string,
     let total_testcases = testcases.length;
 
     for(const testcase of testcases){
+
+        console.log("TEST CASE INPUT:", testcase.input);
          
          const input = JSON.parse(testcase.input)
          const generated_code = generatePythonCode(code , problem.function_signature ,input)
           
          //@ts-ignore
          const result  = await executePython( generated_code , time_limit , space_limit);
+
+                 console.log("RAW OUTPUT:", JSON.stringify(result.stdout));
+
 
 
            if(result.exitCode !== 0){
