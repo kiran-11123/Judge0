@@ -111,7 +111,7 @@ export async function executeJava(
         timedOut = true;
         console.log("Execution timeout");
         docker.kill("SIGKILL");
-      }, time_limit);
+      }, time_limit*1000);
 
       docker.stdout.on("data", (data) => {
         stdout += data.toString();

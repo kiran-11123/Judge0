@@ -6,6 +6,7 @@ import { executeJavaScript } from "./javascript_worker/javascript_worker.js";
 import { executeCpp } from "./c++_worker/c_worker.js";
 import code_model from "../db_connection/user_programs.js";
 import { Judge_Java } from "./java_worker/Judge_Java.js";
+import { Python_Judge } from "./python_worker/python_judge.js";
 export const codeQueue = new Queue("code_execution_queue", {
     connection: bullmqConnection,
 });
@@ -40,8 +41,28 @@ const codeWorker = new Worker("code_execution_queue", async (job) => {
     try {
         switch (language) {
             case "python": {
-                const result = await executePython(code, user_id, submission_id);
-                await updateSubmissionStatus(user_id, problem_id, submission_id, result?.status === "failed" ? "failed" : "completed");
+                const result = await Python_Judge(problem_id, user_id, submission_id, code);
+                console.log("Java execution result:", result);
+                console.log('result stderr', result.stderr);
+                console.log('Total Test cases', result.total);
+                console.log('Test Cases Passed', result.passed);
+                let submissionStatus = "Pending";
+                if (result.status === "accepted") {
+                    submissionStatus = "Accepted";
+                }
+                else if (result.status === "wrong_answer") {
+                    submissionStatus = "Wrong Answer";
+                }
+                else if (result.status === "runtime_error") {
+                    submissionStatus = "Runtime Error";
+                }
+                else if (result.status === "compilation_error") {
+                    submissionStatus = "Compilation Error";
+                }
+                else if (result.status === 'time_limit_exceeded') {
+                    submissionStatus = "Time Limit Exceeded";
+                }
+                await updateSubmissionStatus(user_id, problem_id, submission_id, submissionStatus);
                 return result;
             }
             case "java": {
