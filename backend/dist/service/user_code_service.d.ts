@@ -53,4 +53,5 @@ export declare const Get_User_Codes_Service: (user_id: string) => Promise<(mongo
 }, "id"> & mongoose.HydratedDocumentOverrides<{
     id: string;
 }>) | null>;
+export declare const UploadProblemTemplateService: (problem_id: string, javaTemplate?: string, pythonTemplate?: string, cppTemplate?: string, javascriptTemplate?: string) => Promise<boolean>;
 //# sourceMappingURL=user_code_service.d.ts.map

@@ -1,4 +1,4 @@
-import { Get_User_Codes_Service, Code_Submission_Service } from "../service/user_code_service.js";
+import { Get_User_Codes_Service, Code_Submission_Service, UploadProblemTemplateService } from "../service/user_code_service.js";
 export const Code_Submission_Controller = async (req, res) => {
     try {
         if (!req.user) {
@@ -55,6 +55,50 @@ export const Get_User_Codes_Controller = async (req, res) => {
         }
         return res.status(500).json({
             message: 'Internal Server Error'
+        });
+    }
+};
+export const UploadTemplateController = async (req, res) => {
+    try {
+        const { problem_id, java, python, cpp, javascript } = req.body;
+        if (!problem_id) {
+            return res.status(400).json({
+                message: 'Problem Id is required'
+            });
+        }
+        const result = await UploadProblemTemplateService(problem_id, java, python, cpp, javascript);
+        return res.status(201).json({
+            message: 'Templates created successfully'
+        });
+    }
+    catch (er) {
+        if (er.message === 'Problem Not found') {
+            return res.status(400).json({
+                message: 'Problem Not found'
+            });
+        }
+        else if (er.message === 'Java template already exists for this problem.') {
+            return res.status(400).json({
+                message: 'Java template already exists for this problem.'
+            });
+        }
+        else if (er.message === 'Python template already exists for this problem.') {
+            return res.status(400).json({
+                message: 'Python template already exists for this problem.'
+            });
+        }
+        else if (er.message === 'C++ template already exists for this problem.') {
+            return res.status(400).json({
+                message: 'C++ template already exists for this problem.'
+            });
+        }
+        else if (er.message === 'JavaScript template already exists for this problem.') {
+            return res.status(400).json({
+                message: 'JavaScript template already exists for this problem.'
+            });
+        }
+        return res.status(500).json({
+            message: 'Internal server Error'
         });
     }
 };

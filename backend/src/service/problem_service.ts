@@ -1,4 +1,6 @@
 import problem_model from "../db_connection/problem_schema.js";
+import template_model from "../db_connection/problem_template.js";
+
 import mongoose from "mongoose";
 
 export const CreateProblem = async (
@@ -132,3 +134,4 @@ export const AddTestCaseToProblem = async(problem_id :string , input :string , o
     }
 
 }
+

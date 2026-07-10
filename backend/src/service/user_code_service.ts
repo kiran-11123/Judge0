@@ -1,7 +1,8 @@
 import code_model from "../db_connection/user_programs.js";
 import mongoose from "mongoose";
 import { codeQueue } from "../worker/bullMQ_consumer.js";
-
+import problem_model from "../db_connection/problem_schema.js";
+import template_model from "../db_connection/problem_template.js";
 
 
 export const Code_Submission_Service = async( user_id :string , problem_id : string ,  title: string,  language :string, code :string)=>{
@@ -109,4 +110,91 @@ export const Get_User_Codes_Service = async(user_id :string)=>{
 
 
 
+}
+
+
+
+
+
+export const UploadProblemTemplateService = async(problem_id :string , javaTemplate? :string , pythonTemplate? :string , cppTemplate? : string , javascriptTemplate?:string  )=>{
+     
+    try{
+
+       const problem = await problem_model.findOne({
+    _id: new mongoose.Types.ObjectId(problem_id)
+});
+
+        if(!problem){
+            throw new Error('Problem Not found')
+        }
+
+
+       let template = await template_model.findOne({ problem_id });
+
+if (!template) {
+
+      const templateData: any = {
+        problem_id: new mongoose.Types.ObjectId(problem_id),
+      };
+
+
+      if (javaTemplate !== undefined) {
+        templateData.java = javaTemplate;
+      }
+
+      if (pythonTemplate !== undefined) {
+        templateData.python = pythonTemplate;
+      }
+
+      if (cppTemplate !== undefined) {
+        templateData.cpp = cppTemplate;
+      }
+
+      if (javascriptTemplate !== undefined) {
+        templateData.javascript = javascriptTemplate;
+      }
+
+      template = await template_model.create(templateData);
+
+   
+} else {
+    if (javaTemplate) {
+        if (template.java) {
+            throw new Error("Java template already exists for this problem.");
+        }
+        template.java = javaTemplate;
+    }
+
+    if (pythonTemplate) {
+        if (template.python) {
+            throw new Error("Python template already exists for this problem.");
+        }
+        template.python = pythonTemplate;
+    }
+
+    if (cppTemplate) {
+        if (template.cpp) {
+            throw new Error("C++ template already exists for this problem.");
+        }
+        template.cpp = cppTemplate;
+    }
+
+    if (javascriptTemplate) {
+        if (template.javascript) {
+            throw new Error("JavaScript template already exists for this problem.");
+        }
+        template.javascript = javascriptTemplate;
+    }
+
+    await template.save();
+}
+
+return true;
+
+        
+
+    }
+    catch(er){
+        throw er;
+    }
 }

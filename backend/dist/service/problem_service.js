@@ -1,4 +1,5 @@
 import problem_model from "../db_connection/problem_schema.js";
+import template_model from "../db_connection/problem_template.js";
 import mongoose from "mongoose";
 export const CreateProblem = async (problem_title, problem_description, template_code, function_signature, problem_difficulty, constraints, time_limit, memory_limit, test_cases) => {
     try {
