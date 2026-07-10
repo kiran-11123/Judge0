@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export declare const CreateProblem: (problem_title: string, problem_description: string, template_code: string, function_signature: {
+export declare const CreateProblem: (problem_title: string, problem_description: string, function_signature: {
     method_name: string;
     return_type: string;
     parameters: {
@@ -9,7 +9,6 @@ export declare const CreateProblem: (problem_title: string, problem_description:
 }, problem_difficulty: string, constraints: string, time_limit?: number, memory_limit?: number, test_cases?: any[]) => Promise<mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -48,7 +47,6 @@ export declare const CreateProblem: (problem_title: string, problem_description:
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -90,7 +88,6 @@ export declare const CreateProblem: (problem_title: string, problem_description:
 export declare const GetAllProblems: () => Promise<(mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -129,7 +126,6 @@ export declare const GetAllProblems: () => Promise<(mongoose.Document<unknown, {
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -171,7 +167,6 @@ export declare const GetAllProblems: () => Promise<(mongoose.Document<unknown, {
 export declare const GetProblemById: (problem_id: string) => Promise<mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -210,7 +205,6 @@ export declare const GetProblemById: (problem_id: string) => Promise<mongoose.Do
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -252,7 +246,6 @@ export declare const GetProblemById: (problem_id: string) => Promise<mongoose.Do
 export declare const AddTestCaseToProblem: (problem_id: string, input: string, output: string, isHidden?: boolean) => Promise<mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -291,7 +284,6 @@ export declare const AddTestCaseToProblem: (problem_id: string, input: string, o
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;

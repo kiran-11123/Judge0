@@ -68,10 +68,7 @@ const Problem_Schema = new mongoose.Schema(
       required: true,
     },
 
-    template_code: {
-      type: String,
-      required: true,
-    },
+    
 
     function_signature: {
       type: FunctionSignatureSchema,

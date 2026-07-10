@@ -48,10 +48,6 @@ const Problem_Schema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    template_code: {
-        type: String,
-        required: true,
-    },
     function_signature: {
         type: FunctionSignatureSchema,
         required: true,

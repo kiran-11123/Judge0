@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 declare const problem_model: mongoose.Model<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -39,7 +38,6 @@ declare const problem_model: mongoose.Model<{
 }, mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -78,7 +76,6 @@ declare const problem_model: mongoose.Model<{
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -121,7 +118,6 @@ declare const problem_model: mongoose.Model<{
 }, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -156,7 +152,6 @@ declare const problem_model: mongoose.Model<{
 } & mongoose.DefaultTimestampProps, mongoose.Document<unknown, {}, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -195,7 +190,6 @@ declare const problem_model: mongoose.Model<{
 }> & Omit<{
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -236,7 +230,6 @@ declare const problem_model: mongoose.Model<{
 }>, unknown, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;
@@ -277,7 +270,6 @@ declare const problem_model: mongoose.Model<{
 }>, {
     problem_title: string;
     problem_description: string;
-    template_code: string;
     function_signature: {
         method_name: string;
         return_type: string;

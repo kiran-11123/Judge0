@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 export declare const Code_Submission_Service: (user_id: string, problem_id: string, title: string, language: string, code: string) => Promise<void>;
 export declare const Get_User_Codes_Service: (user_id: string) => Promise<(mongoose.Document<unknown, {}, {
-    user_id: mongoose.Types.ObjectId;
     problem_id: mongoose.Types.ObjectId;
+    user_id: mongoose.Types.ObjectId;
     codes_saved: mongoose.Types.DocumentArray<{
         status: string;
         created_at: NativeDate;
@@ -25,8 +25,8 @@ export declare const Get_User_Codes_Service: (user_id: string) => Promise<(mongo
 }, {
     id: string;
 }, mongoose.DefaultSchemaOptions> & Omit<{
-    user_id: mongoose.Types.ObjectId;
     problem_id: mongoose.Types.ObjectId;
+    user_id: mongoose.Types.ObjectId;
     codes_saved: mongoose.Types.DocumentArray<{
         status: string;
         created_at: NativeDate;

@@ -12,7 +12,6 @@ export const createProblemController = async (
         let {
             problem_title,
             problem_description,
-            template_code,
             function_signature,
             problem_difficulty,
             constraints,
@@ -24,7 +23,6 @@ export const createProblemController = async (
         if (
             !problem_title ||
             !problem_description ||
-            !template_code ||
             !function_signature ||
             !problem_difficulty ||
             !constraints ||
@@ -37,7 +35,6 @@ export const createProblemController = async (
 
         problem_title = problem_title.trim();
         problem_description = problem_description.trim();
-        template_code = template_code.trim();
         constraints = constraints.trim();
         problem_difficulty = problem_difficulty.trim().toLowerCase();
 
@@ -85,7 +82,6 @@ export const createProblemController = async (
         const newProblem = await CreateProblem(
             problem_title,
             problem_description,
-            template_code,
             function_signature,
             problem_difficulty,
             constraints,

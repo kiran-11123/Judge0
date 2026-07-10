@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 export const CreateProblem = async (
     problem_title: string,
     problem_description: string,
-    template_code: string,
     function_signature: {
         method_name: string;
         return_type: string;
@@ -39,8 +38,6 @@ export const CreateProblem = async (
             problem_title,
 
             problem_description,
-
-            template_code,
 
             function_signature,
 
