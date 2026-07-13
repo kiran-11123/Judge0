@@ -6,6 +6,6 @@ interface FunctionSignature {
         type: string;
     }[];
 }
-export default function GenerateCPPCode(solutionCode: string, signature: FunctionSignature, input: any): Promise<void>;
+export declare function generateCPPCode(solutionCode: string, signature: FunctionSignature, input: any): string;
 export {};
 //# sourceMappingURL=generateCPPCode.d.ts.map

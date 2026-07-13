@@ -38,7 +38,7 @@ async function cleanup(tempDir: string) {
 }
 
 
-export async function executeJava(
+export async function executeCPP(
   code: string,
   time_limit : number,
   space_limit : number

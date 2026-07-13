@@ -1,6 +1,7 @@
 import problem_model from "../../db_connection/problem_schema.js";
 import mongoose from "mongoose";
-import GenerateCPPCode from "./generateCPPCode.js";
+import { executeCPP } from "./c_worker.js";
+import { generateCPPCode } from "./generateCPPCode.js";
 
 function normalize(output? : string){
 
@@ -54,11 +55,48 @@ export async function Judge_C(problem_id :string ,
 
         const input = JSON.parse(testcase.input);
 
-        const generateCode =await  GenerateCPPCode(code , problem.function_signature , input);
+        const generateCode =await  generateCPPCode(code , problem.function_signature , input);
+
+        const result = await executeCPP(generateCode , time_limit ,space_limit);
+
+
+
+         if(result.exitCode !== 0){
+
+            return {
+                status: result.status,
+                stderr:result.stderr,
+                    passed : test_cases_passed,
+                    total : total_testcases
+            };
+
+        }
+
+
+ if (!compareOutputs(result.stdout, testcase.output)) {
+    return {
+        status: "wrong_answer",
+        expected: testcase.output,
+        actual: result.stdout,
+        passed : test_cases_passed,
+        total : total_testcases
+
+    };
+}
+
+
+       test_cases_passed+=1;
+
+
 
 
            
 
     }
    
+     return {
+        status:"accepted",
+        passed : test_cases_passed,
+        total : total_testcases
+    };
 }

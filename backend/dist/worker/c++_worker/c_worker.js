@@ -23,7 +23,7 @@ async function cleanup(tempDir) {
         console.error("Cleanup failed:", err);
     }
 }
-export async function executeJava(code, time_limit, space_limit) {
+export async function executeCPP(code, time_limit, space_limit) {
     let tempDir = "";
     try {
         const jobId = crypto.randomUUID();

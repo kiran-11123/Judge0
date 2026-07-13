@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import bullmqConnection from "./ioredis_connection.js";
 import { executePython } from "./python_worker/python_worker.js";
 import { executeJavaScript } from "./javascript_worker/javascript_worker.js";
-import { executeCpp } from "./c++_worker/c_worker.js";
 import code_model from "../db_connection/user_programs.js";
 import { Judge_Java } from "./java_worker/Judge_Java.js";
 import { Python_Judge } from "./python_worker/python_judge.js";
