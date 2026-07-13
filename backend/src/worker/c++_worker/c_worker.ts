@@ -69,7 +69,7 @@ export async function executeCPP(
     // create Main.java
     const sourceFile = path.join(
       tempDir,
-      "Main.java"
+      "Main.cpp"
     );
 
 
@@ -81,7 +81,7 @@ export async function executeCPP(
 
 
     console.log(
-      "Created Java file:",
+      "Created CPP file:",
       sourceFile
     );
 

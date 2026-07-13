@@ -73,6 +73,7 @@ export async function Judge_C(problem_id :string ,
         }
 
 
+
  if (!compareOutputs(result.stdout, testcase.output)) {
     return {
         status: "wrong_answer",
@@ -83,6 +84,7 @@ export async function Judge_C(problem_id :string ,
 
     };
 }
+
 
 
        test_cases_passed+=1;

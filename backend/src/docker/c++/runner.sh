@@ -1,6 +1,6 @@
 #!/bin/sh
 
-g++ Main.cpp -o main
+g++ /code/Main.cpp -o main
 
 if [ $? -eq 0 ]; then
     ./main

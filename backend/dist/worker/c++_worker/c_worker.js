@@ -34,9 +34,9 @@ export async function executeCPP(code, time_limit, space_limit) {
         });
         console.log("Created temp directory:", tempDir);
         // create Main.java
-        const sourceFile = path.join(tempDir, "Main.java");
+        const sourceFile = path.join(tempDir, "Main.cpp");
         await fs.writeFile(sourceFile, code, "utf-8");
-        console.log("Created Java file:", sourceFile);
+        console.log("Created CPP file:", sourceFile);
         return await new Promise((resolve, reject) => {
             const docker = spawn("docker", [
                 "run",
