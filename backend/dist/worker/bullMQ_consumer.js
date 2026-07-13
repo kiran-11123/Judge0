@@ -1,6 +1,7 @@
 import { Queue, Worker } from "bullmq";
 import mongoose from "mongoose";
 import bullmqConnection from "./ioredis_connection.js";
+import logger from "../logging/logger.js";
 import { executePython } from "./python_worker/python_worker.js";
 import { executeJavaScript } from "./javascript_worker/javascript_worker.js";
 import code_model from "../db_connection/user_programs.js";
@@ -10,6 +11,7 @@ import { Judge_C } from "./c++_worker/Judge_c++.js";
 export const codeQueue = new Queue("code_execution_queue", {
     connection: bullmqConnection,
 });
+logger.info('BullMQ queue initialized');
 const updateSubmissionStatus = async (userId, problemId, submissionId, status) => {
     if (!userId || !problemId || !submissionId) {
         return;
@@ -31,6 +33,7 @@ const updateSubmissionStatus = async (userId, problemId, submissionId, status) =
 };
 const codeWorker = new Worker("code_execution_queue", async (job) => {
     const { problem_id, user_id, submission_id, title, language, code } = job.data;
+    logger.info('Processing code execution job', { jobId: job.id, submissionId: submission_id, language });
     if (!user_id || !submission_id || !title || !language || !code) {
         throw new Error("Missing required fields");
     }
@@ -133,12 +136,12 @@ const codeWorker = new Worker("code_execution_queue", async (job) => {
     concurrency: 5,
 });
 codeWorker.on("completed", (job) => {
-    console.log(`Job ${job.id} completed with result:`, job.returnvalue);
+    logger.info('BullMQ job completed', { jobId: job.id });
 });
 codeWorker.on("failed", (job, err) => {
-    console.error(`Job ${job.id} failed with error:`, err);
+    logger.error('BullMQ job failed', { jobId: job.id, error: err.message });
 });
 codeWorker.on("error", (err) => {
-    console.error(err);
+    logger.error('BullMQ worker error', { error: err });
 });
 //# sourceMappingURL=bullMQ_consumer.js.map

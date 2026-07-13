@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import problem_model from "../../db_connection/problem_schema.js";
 import { executeJava } from "./java_woker.js";
 import { generateJavaCode } from "./generateJavaCode.js";
+import logger from "../../logging/logger.js";
 
 
 function normalize(output?: string) {
@@ -27,6 +28,7 @@ export async function Judge_Java(
     submission_id:string,
     code:string,
 ){
+    logger.info('Starting Java judge run', { problemId: problem_id, submissionId: submission_id, userId: user_id });
 
 
     const problem =

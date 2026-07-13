@@ -4,6 +4,7 @@ import { spawn } from "child_process";
 import path from 'path';
 import { fileURLToPath } from "url";
 import { mkdir } from "fs";
+import logger from "../../logging/logger.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // temp folder will be created in the same folder as this file
@@ -14,6 +15,7 @@ async function cleanup(tempDir) {
         return;
     }
     try {
+        logger.info('Cleaning up Python temp directory', { tempDir });
         await fs.rm(tempDir, {
             recursive: true,
             force: true
@@ -28,6 +30,7 @@ async function cleanup(tempDir) {
 export async function executePython(code, time_limit, space_limit) {
     let tempDir = "";
     try {
+        logger.info('Preparing Python execution environment');
         const jobId = crypto.randomUUID();
         tempDir = path.join(tempRootDir, jobId);
         // create job directory

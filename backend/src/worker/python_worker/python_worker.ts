@@ -4,6 +4,7 @@ import { spawn } from "child_process";
 import path from 'path'
 import { fileURLToPath } from "url";
 import { mkdir } from "fs";
+import logger from "../../logging/logger.js";
 
 interface ExecutionResult {
   stdout: string;
@@ -28,7 +29,7 @@ async function cleanup(tempDir :string){
   }
 
   try{
-     
+    logger.info('Cleaning up Python temp directory', { tempDir });
     await fs.rm(tempDir , {
         recursive : true,
         force  : true
@@ -51,7 +52,7 @@ export async function executePython(
 
 
       try{
-
+             logger.info('Preparing Python execution environment');
              const jobId = crypto.randomUUID();
 
             tempDir = path.join(tempRootDir, jobId);

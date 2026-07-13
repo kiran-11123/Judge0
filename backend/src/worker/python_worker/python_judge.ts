@@ -2,6 +2,7 @@ import problem_model from "../../db_connection/problem_schema.js";
 import mongoose from "mongoose";
 import { executePython } from "./python_worker.js";
 import { generatePythonCode } from "./generatePythonCode.js";
+import logger from "../../logging/logger.js";
 
 
 function normalize(output?:string){
@@ -29,6 +30,7 @@ export async function Python_Judge(problem_id : string,
     submission_id :string,
     code : string
 ){
+    logger.info('Starting Python judge run', { problemId: problem_id, submissionId, userId: user_id });
 
     const problem = await problem_model.findOne({
         _id : new mongoose.Types.ObjectId(problem_id)

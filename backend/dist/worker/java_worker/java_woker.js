@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
+import logger from "../../logging/logger.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // temp folder will be created in the same folder as this file
@@ -26,6 +27,7 @@ async function cleanup(tempDir) {
 export async function executeJava(code, time_limit, space_limit) {
     let tempDir = "";
     try {
+        logger.info('Preparing Java execution environment');
         const jobId = crypto.randomUUID();
         tempDir = path.join(tempRootDir, jobId);
         // create job directory

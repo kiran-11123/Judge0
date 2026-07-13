@@ -1,7 +1,10 @@
 import express from 'express'
-import { AddTestCaseToProblemController , createProblemController , GetAllProblemsController , GetProblemByIdController } from '../controller/problem_controller.js';
+import { AddTestCaseToProblemController, createProblemController, GetAllProblemsController, GetProblemByIdController } from '../controller/problem_controller.js';
 import Authentication_token from '../middleware/Auth_middleware.js';
+import logger from '../logging/logger.js';
+
 const Problem_Router = express.Router();
+logger.info('Problem routes initialized');
 
 
 

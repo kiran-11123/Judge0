@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
+import logger from "../../logging/logger.js";
 
 
 interface ExecutionResult {
@@ -49,7 +50,7 @@ export async function executeJava(
 
 
   try {
-
+    logger.info('Preparing Java execution environment');
     const jobId = crypto.randomUUID();
 
     tempDir = path.join(tempRootDir, jobId);

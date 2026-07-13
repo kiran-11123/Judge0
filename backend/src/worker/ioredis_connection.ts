@@ -1,4 +1,5 @@
 import { Redis } from "ioredis";
+import logger from "../logging/logger.js";
 
 const bullmqConnection = new Redis({
   host: "localhost",
@@ -8,11 +9,11 @@ const bullmqConnection = new Redis({
 
 
 bullmqConnection.on("connect", () => {
-  console.log("IORedis connected");
+  logger.info("IORedis connected");
 });
 
 bullmqConnection.on("error", (err) => {
-  console.log("Redis error:", err);
+  logger.error("Redis error", { error: err });
 });
 
 export default bullmqConnection;

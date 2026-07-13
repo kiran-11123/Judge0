@@ -2,6 +2,7 @@ import problem_model from "../../db_connection/problem_schema.js";
 import mongoose from "mongoose";
 import { executeCPP } from "./c_worker.js";
 import { generateCPPCode } from "./generateCPPCode.js";
+import logger from "../../logging/logger.js";
 
 function normalize(output? : string){
 
@@ -31,6 +32,7 @@ export async function Judge_C(problem_id :string ,
     submission_id  : string,
     code : string
 ){
+    logger.info('Starting C++ judge run', { problemId: problem_id, submissionId: submission_id, userId: user_id });
 
 
     const problem = await problem_model.findOne({_id : new mongoose.Types.ObjectId(problem_id)});
