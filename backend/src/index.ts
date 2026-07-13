@@ -9,6 +9,7 @@ import Problem_Router from './routes/problem_routes.js';
 import cookieParser  from 'cookie-parser'
 import rateLimit from 'express-rate-limit'
 import logger from './logging/logger.js';
+import RunLogRetentionJob from './logging/log_retention.js';
 const app = express();
 const PORT = process.env.PORT || 5000
 dotenv.config();
@@ -17,7 +18,7 @@ app.use(cors())
 app.use(cookieParser());
 await ConnectRedis();
 await ConnectDB();
-
+RunLogRetentionJob();
 const Limiter = rateLimit({
       
     windowMs : 15*60*1000 ,

@@ -8,3 +8,19 @@
 {"level":"info","message":"Authentication successful","path":"/submit","service":"judge0-backend","timestamp":"2026-07-13T17:04:21.873Z","userId":"6a4e759cd4c8a2e2ea15d46d"}
 {"language":"c++","level":"info","message":"Code submission request received","problemId":"6a5106992e26a49d4b02ac74","service":"judge0-backend","timestamp":"2026-07-13T17:04:21.875Z"}
 {"language":"c++","level":"info","message":"Code submission service completed","problemId":"6a5106992e26a49d4b02ac74","service":"judge0-backend","timestamp":"2026-07-13T17:04:22.009Z","userId":"6a4e759cd4c8a2e2ea15d46d"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:06:30.145Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.710Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.713Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.714Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.825Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.853Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.894Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-13T17:06:31.906Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:18:58.541Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.284Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.287Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.288Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.489Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.567Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.625Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.676Z"}
