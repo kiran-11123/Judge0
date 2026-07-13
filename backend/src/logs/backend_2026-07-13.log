@@ -24,3 +24,19 @@
 {"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.567Z"}
 {"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.625Z"}
 {"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-13T17:19:00.676Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:21:46.230Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.043Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.046Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.047Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.161Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.175Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.232Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-13T17:21:48.274Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.507Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.910Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.922Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.924Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.990Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:22:07.999Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-13T17:22:08.058Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-13T17:22:08.093Z"}

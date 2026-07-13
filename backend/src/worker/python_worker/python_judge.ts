@@ -30,7 +30,7 @@ export async function Python_Judge(problem_id : string,
     submission_id :string,
     code : string
 ){
-    logger.info('Starting Python judge run', { problemId: problem_id, submissionId, userId: user_id });
+    logger.info('Starting Python judge run', { problemId: problem_id, submission_id, userId: user_id });
 
     const problem = await problem_model.findOne({
         _id : new mongoose.Types.ObjectId(problem_id)
