@@ -9,8 +9,11 @@ if (!fs.existsSync(logsDir)) {
 const logger = winston.createLogger({
     level: "info",
     format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
-    defaultMeta: { service: 'user-service' },
+    defaultMeta: { service: 'judge0-backend' },
     transports: [
+        new winston.transports.Console({
+            format: winston.format.simple()
+        }),
         new winston.transports.File({
             filename: path.join(logsDir, "error.log"),
             level: "error"

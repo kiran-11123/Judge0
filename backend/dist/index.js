@@ -8,6 +8,7 @@ import Code_Router from './routes/user_code_routes.js';
 import Problem_Router from './routes/problem_routes.js';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
+import logger from './logging/logger.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
@@ -28,6 +29,6 @@ app.use("/api/auth", Auth_Router);
 app.use("/api/code", Code_Router);
 app.use("/api/problem", Problem_Router);
 app.listen(PORT, () => {
-    console.log(`Server is Running on PORT  : ${PORT}`);
+    logger.info(`Server is Running on PORT  : ${PORT}`);
 });
 //# sourceMappingURL=index.js.map
