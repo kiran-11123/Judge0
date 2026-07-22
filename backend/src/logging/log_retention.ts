@@ -5,7 +5,7 @@ import logger from "./logger.js";
 
 export default function RunLogRetentionJob() {
 
-    cron.schedule("0 0 * * *", () => {
+    cron.schedule("* * * * *", () => {
 
         logger.info("Log retention job started");
 

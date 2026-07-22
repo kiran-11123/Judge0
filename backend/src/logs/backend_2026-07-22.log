@@ -1,3 +1,8 @@
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:30:03.385Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:30:04.754Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:30:04.757Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:30:04.758Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:30:04.895Z"}
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:04.917Z"}
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:05.138Z"}
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:05.364Z"}
@@ -22,3 +27,6 @@
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:40.780Z"}
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:42.935Z"}
 {"error":{},"level":"error","message":"Redis client error","service":"judge0-backend","timestamp":"2026-07-22T14:30:44.975Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:30:47.149Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:30:47.303Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:30:47.398Z"}
