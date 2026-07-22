@@ -16,7 +16,10 @@ export const Code_Submission_Controller = async (req: Request, res: Response) =>
         const problem_id = req.body.problem_id as string;
         const user_id = req.user.user_id as string;
         const title = req.body.title;
-        const code = req.body.code;
+        let code = req.body.code;
+
+        code  = JSON.stringify(code);
+
         const language = req.body.language;
 
         if (!title || !code || !language) {

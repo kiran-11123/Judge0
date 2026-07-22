@@ -12,7 +12,8 @@ export const Code_Submission_Controller = async (req, res) => {
         const problem_id = req.body.problem_id;
         const user_id = req.user.user_id;
         const title = req.body.title;
-        const code = req.body.code;
+        let code = req.body.code;
+        code = JSON.stringify(code);
         const language = req.body.language;
         if (!title || !code || !language) {
             logger.warn('Code submission rejected: missing fields');

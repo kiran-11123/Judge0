@@ -41,3 +41,57 @@
 {"level":"info","message":"Log retention job started","service":"judge0-backend","timestamp":"2026-07-22T14:34:00.007Z"}
 {"level":"info","message":"Found 3 log files","service":"judge0-backend","timestamp":"2026-07-22T14:34:00.008Z"}
 {"level":"info","message":"Deleted backend_2026-07-13.log","service":"judge0-backend","timestamp":"2026-07-22T14:34:00.010Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.125Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.775Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.778Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.779Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.958Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:34:41.972Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:34:42.049Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:34:42.093Z"}
+{"email":"kiran.sadara6730@gmail.com","level":"info","message":"Sign in request received","service":"judge0-backend","timestamp":"2026-07-22T14:35:40.987Z"}
+{"email":"kiran.sadara6730@gmail.com","level":"info","message":"Authenticating user","service":"judge0-backend","timestamp":"2026-07-22T14:35:40.988Z"}
+{"email":"kiran.sadara6730@gmail.com","level":"info","message":"User authenticated successfully","service":"judge0-backend","timestamp":"2026-07-22T14:35:41.143Z"}
+{"email":"kiran.sadara6730@gmail.com","level":"info","message":"User signed in successfully","service":"judge0-backend","timestamp":"2026-07-22T14:35:41.144Z"}
+{"level":"info","message":"Authentication successful","path":"/submit","service":"judge0-backend","timestamp":"2026-07-22T14:35:53.527Z","userId":"6a4e759cd4c8a2e2ea15d46d"}
+{"language":"c++","level":"info","message":"Code submission request received","problemId":"6a5106992e26a49d4b02ac74","service":"judge0-backend","timestamp":"2026-07-22T14:35:53.528Z"}
+{"language":"c++","level":"info","message":"Code submission service completed","problemId":"6a5106992e26a49d4b02ac74","service":"judge0-backend","timestamp":"2026-07-22T14:35:53.667Z","userId":"6a4e759cd4c8a2e2ea15d46d"}
+{"jobId":"76","language":"c++","level":"info","message":"Processing code execution job","service":"judge0-backend","submissionId":"6a60d5492e6cf744f76b624e","timestamp":"2026-07-22T14:35:53.673Z"}
+{"level":"info","message":"Starting C++ judge run","problemId":"6a5106992e26a49d4b02ac74","service":"judge0-backend","submissionId":"6a60d5492e6cf744f76b624e","timestamp":"2026-07-22T14:35:53.689Z","userId":"6a4e759cd4c8a2e2ea15d46d"}
+{"level":"info","message":"Preparing C++ execution environment","service":"judge0-backend","timestamp":"2026-07-22T14:35:53.705Z"}
+{"level":"info","message":"Preparing C++ execution environment","service":"judge0-backend","timestamp":"2026-07-22T14:35:57.381Z"}
+{"level":"info","message":"Preparing C++ execution environment","service":"judge0-backend","timestamp":"2026-07-22T14:35:59.172Z"}
+{"level":"info","message":"Preparing C++ execution environment","service":"judge0-backend","timestamp":"2026-07-22T14:36:00.890Z"}
+{"jobId":"76","level":"info","message":"BullMQ job completed","service":"judge0-backend","timestamp":"2026-07-22T14:36:02.716Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:41:46.254Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:41:47.907Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:41:47.910Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:41:47.911Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:41:48.099Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:41:48.139Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:41:48.197Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:41:48.229Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.102Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.826Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.830Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.831Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.953Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:42:16.965Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:42:17.025Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:42:17.056Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.414Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.598Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.600Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.602Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.633Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.645Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.729Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:44:36.777Z"}
+{"level":"info","message":"Auth routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:45:01.828Z"}
+{"level":"info","message":"BullMQ queue initialized","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.035Z"}
+{"level":"info","message":"Code routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.038Z"}
+{"level":"info","message":"Problem routes initialized","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.039Z"}
+{"level":"info","message":"IORedis connected","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.083Z"}
+{"level":"info","message":"Redis connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.092Z"}
+{"level":"info","message":"MongoDB connected successfully","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.176Z"}
+{"level":"info","message":"Server is Running on PORT  : 5000","service":"judge0-backend","timestamp":"2026-07-22T14:45:02.227Z"}
